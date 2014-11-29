@@ -5,8 +5,8 @@ var app = express()
 var io = require('socket.io').listen(app.listen(8001));
 
 
-io.enable('browser client minification');
-io.enable('browser client gzip');
+io.set('browser client minification',true);
+io.set('browser client gzip',true);
 
 // Enables CORS
 var enableCORS = function(req, res, next) {
