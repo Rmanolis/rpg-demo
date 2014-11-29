@@ -11,10 +11,14 @@ app.controller('ScrollsCtrl', function($scope, ScrollSrv){
  }
  get_scrolls();
 
+ $scope.$on('reload:scrolls', function(){
+   get_scrolls();
+ })
+
  $scope.add_scroll = function(scroll){
     ScrollSrv.postScroll(scroll).success(function(data){
       if(data.errors){
-        alert(data.errors[1]);
+        alert(data.errors[0]);
       }else{
          $scope.new_scroll = {
             name:'',

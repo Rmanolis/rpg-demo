@@ -22,7 +22,8 @@ app.controller('NavCtrl', function($scope, $http, UserSrv){
 
   socket.on('new-scroll', function(data){
     if($scope.id == data.user_id){
-      alert("New scroll is ready " + data.scroll_name);      
+      alert("The scroll " + data.scroll_name + " is ready ");
+      $scope.$broadcast("reload:scrolls");
     }
   });
 

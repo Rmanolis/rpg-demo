@@ -23,6 +23,10 @@ app.controller('InventoriesCtrl', function($scope, InventorySrv){
 
   get_inventories()
 
+  $scope.$on('reload:scrolls', function(){
+   get_inventories();
+ })
+
   $scope.onDrop = function(event,ui,to_id){
       console.log('Drop ' + $scope.draggedScroll.name);
       InventorySrv
