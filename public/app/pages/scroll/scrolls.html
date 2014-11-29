@@ -1,0 +1,22 @@
+
+<div class="container">
+  <div class="row"> 
+    <h2>Add scroll</h2>
+    <input ng-model="new_scroll.name"/>
+    <input ng-model="new_scroll.description"/>
+    <button ng-click="add_scroll(new_scroll)">add</button>
+  </div>
+
+  <div class="row">
+    <h2>List of developing scrolls</h2>
+    <ul>
+      <li ng-repeat="scroll in scrolls">
+        <div > {{scroll.name}} <div>  
+            <div > <timer interval="1000" countdown="scroll.seconds_remain"> 
+               {{hours}} minute{{hoursS}},
+              {{minutes}} minute{{minutesS}},
+              {{seconds}} second{{secondsS}}.</timer> <div>
+      </li>
+    </ul>
+  </div>
+</div>

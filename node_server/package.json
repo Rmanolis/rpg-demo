@@ -1,0 +1,13 @@
+{
+  "name": "messenger-server",
+  "description": "Send and retrieve messages ",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x",
+    "socket.io": "x",
+    "cors" : "x",
+    "body-parser":"x",
+    "method-override":"x"
+  }
+}

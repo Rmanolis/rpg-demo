@@ -1,0 +1,45 @@
+<div class="container">
+ <style>
+    .thumbnail {
+      height: 50px !important;
+    }
+    .btn-droppable {
+      width: 180px;
+      height: 30px;
+      padding-left: 4px;
+    }
+    .btn-draggable {
+      width: 160px;
+    }
+  </style> 
+  <div>
+    <input ng-model="inventory_name" />
+    <button ng-click="add_inventory(inventory_name)">Add</button>
+  </div>
+<div class='contentWrapper ng-cloak'>
+        <div class='content'>
+          <div class="row-fluid">
+            <ul class="thumbnails">
+              <li class="span3" style='margin-left:10px;' ng-repeat="inventory in inventories">
+                <span> {{inventory.name}} </span>
+                <div class="thumbnail" data-drop="true" ng-model='inventory.list' jqyoui-droppable="{
+                  multiple:true,
+                  onDrop:'onDrop(inventory._id.$oid)'
+                }">
+                  <div class="caption">
+                    <div class="btn btn-info btn-draggable" 
+                      ng-repeat="scroll in inventory.list" 
+                      ng-show="scroll.name" 
+                      data-drag="{{scroll.drag}}" 
+                      data-jqyoui-options="{revert: 'invalid'}" 
+                      ng-model="inventory.list" jqyoui-draggable="{index: {{$index}},
+                      onDrag:'onDrag(scroll,inventory._id.$oid)',
+                      animate:true}">{{scroll.name}}</div>
+                  </div>
+                </div>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+</div>
