@@ -29,7 +29,8 @@
                   <div class="caption">
                     <div class="btn btn-info btn-draggable" 
                       ng-repeat="scroll in inventory.list" 
-                      ng-show="scroll.name" 
+                      ng-show="scroll.name"
+                      popover="{{scroll.description}}" popover-trigger="mouseenter"
                       data-drag="{{scroll.drag}}" 
                       data-jqyoui-options="{revert: 'invalid'}" 
                       ng-model="inventory.list" jqyoui-draggable="{index: {{$index}},

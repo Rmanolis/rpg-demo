@@ -53,6 +53,7 @@ def get_scrolls_from_inventory(user,inventory_id):
            scroll_obj = Scroll.objects(id=sii.scroll.id).first()
            scroll = {'id': str(scroll_obj.id),
                      'is_finished': scroll_obj.is_finished,
+                     'description': scroll_obj.description,
                      'name': scroll_obj.name}
            scrolls.append(scroll)
 

@@ -7,7 +7,8 @@ lodash.factory('_', function () {
 
 var app = angular.module('app', ['ngRoute', 
     'ngAnimate','ngDragDrop',
-    'timer'
+    'timer',
+    'ui.bootstrap'
 ]);
 
 
