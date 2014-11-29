@@ -1,4 +1,4 @@
-app.controller('NavCtrl', function($scope, $http, UserSrv){
+app.controller('NavCtrl', function($scope,$rootScope, $http, UserSrv){
   
   $scope.sitemap = [];
   $scope.username = '';
@@ -23,7 +23,7 @@ app.controller('NavCtrl', function($scope, $http, UserSrv){
   socket.on('new-scroll', function(data){
     if($scope.id == data.user_id){
       alert("The scroll " + data.scroll_name + " is ready ");
-      $scope.$broadcast("reload:scrolls");
+      $rootScope.$broadcast("reload:scrolls");
     }
   });
 

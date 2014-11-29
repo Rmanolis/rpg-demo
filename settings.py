@@ -13,5 +13,5 @@ logging = logging
 
 logger = logging.getLogger()
 
-WEBSOCKET_IP = "http://127.0.0.1:8001"
+WEBSOCKET_IP = "http://178.62.6.27:8000"
 

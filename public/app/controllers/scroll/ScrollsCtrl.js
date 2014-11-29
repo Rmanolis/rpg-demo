@@ -15,6 +15,8 @@ app.controller('ScrollsCtrl', function($scope, ScrollSrv){
    get_scrolls();
  })
 
+
+
  $scope.add_scroll = function(scroll){
     ScrollSrv.postScroll(scroll).success(function(data){
       if(data.errors){
