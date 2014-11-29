@@ -4,6 +4,10 @@ var methodOverride = require('method-override');
 var app = express()
 var io = require('socket.io').listen(app.listen(8001));
 
+
+io.enable('browser client minification');
+io.enable('browser client gzip');
+
 // Enables CORS
 var enableCORS = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
