@@ -1,6 +1,4 @@
-app.controller('HomeCtrl', function($scope, Facebook){
-  
-          $scope.login = function () {
+app.controller('HomeCtrl', function($scope, Facebook){ 
             Facebook.login(function(response) {
               if (response.status == 'connected') {
                 $scope.status = 'yes';
@@ -8,6 +6,4 @@ app.controller('HomeCtrl', function($scope, Facebook){
                 $scope.status = 'no';
               }
             });
-          };
-
 });

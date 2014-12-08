@@ -46,8 +46,8 @@ def index():
 
 @app.route('/app' , methods=['POST'])
 def post_app():
-    #print('form')
-    #print(request.form)
+    print('form')
+    print(request.form)
 
     return send_file('public/index.html')
 
