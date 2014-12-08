@@ -10,6 +10,7 @@ from controllers.domain_ctrl import domain_bp
 import threading
 from datetime import datetime
 from flask_oauthlib.client import OAuth, OAuthException
+from flask_sslify import SSLify
 
 FACEBOOK_APP_ID = '669039869884239'
 FACEBOOK_APP_SECRET = '7e9fe10ceb4a408e7137334ea7434da5'
@@ -24,6 +25,7 @@ app.register_blueprint(scroll_bp, url_prefix='/scrolls')
 app.register_blueprint(inventory_bp, url_prefix="/inventories")
 app.register_blueprint(domain_bp, url_prefix="/domains")
 oauth = OAuth(app)
+sslify = SSLify(app)
 
 facebook = oauth.remote_app(
     'facebook',
@@ -38,9 +40,19 @@ facebook = oauth.remote_app(
 
 
 
-
-
 @app.route('/')
+def index():
+    return send_file('public/index.html')
+
+@app.route('/app' , methods=['POST'])
+def post_app():
+    print('form')
+    print(request.form)
+    print('json')
+    print(request.json)
+    return "lalalla"
+
+@app.route('/login')
 def login():
     callback = url_for(
         'facebook_authorized',
