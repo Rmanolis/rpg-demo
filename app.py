@@ -1,6 +1,8 @@
 from flask import *
 from library.logic import for_nav
 from library.logic import for_scroll
+from library import facebook_tools
+
 import settings
 import os
 from controllers.inventory_ctrl import inventory_bp
@@ -47,7 +49,7 @@ def index():
 @app.route('/app' , methods=['POST'])
 def post_app():
     #print('form')
-    #print(request.form.get('signed_request'))
+    print(facebook_tools.parse_signed_request(request.form.get('signed_request')))
 
     return send_file('public/index.html')
 
@@ -76,7 +78,7 @@ def facebook_authorized():
     me = facebook.get('/me')
     username = me.data['name']
     email= me.data['email']
-    return send_file('public/index.html')
+    return email
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
