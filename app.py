@@ -47,7 +47,7 @@ def index():
 @app.route('/app' , methods=['POST'])
 def post_app():
     print('form')
-    print(request.form)
+    print(request.form.get('signed_request'))
 
     return send_file('public/index.html')
 
