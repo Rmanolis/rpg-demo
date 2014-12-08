@@ -39,13 +39,13 @@ facebook = oauth.remote_app(
 
 
 
-
+''''
 @app.route("/")
 def index():
     return send_file('public/index.html')
+''''
 
-
-@app.route('/login')
+@app.route('/')
 def login():
     callback = url_for(
         'facebook_authorized',
