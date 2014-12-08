@@ -13,6 +13,8 @@ import threading
 from datetime import datetime
 from flask_oauthlib.client import OAuth, OAuthException
 from flask_sslify import SSLify
+from models.user import User
+from models.inventory import Inventory
 
 FACEBOOK_APP_ID = '669039869884239'
 FACEBOOK_APP_SECRET = '7e9fe10ceb4a408e7137334ea7434da5'
@@ -58,7 +60,19 @@ def post_app():
     me = facebook.get('/me')
     username = me.data['name']
     email= me.data['email']
-    print(email + " " + username)
+    user = User.objects(email=email,
+                        username=username).first()
+    if user:
+        session['user_id'] = str(user.id)
+    else:
+        user = User()
+        user.email = email
+        user.username = username
+        user.save()
+        Inventory(owner=user.to_dbref(),
+                      name='Basic',
+                      is_basic=True).save()
+
 
     return send_file('public/index.html')
 
