@@ -8,7 +8,8 @@ lodash.factory('_', function () {
 var app = angular.module('app', ['ngRoute', 
     'ngAnimate','ngDragDrop',
     'timer',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'facebook'
 ]);
 
 
@@ -25,18 +26,22 @@ app.run(function($rootScope,$location,UserSrv){
     };
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        // if route requires auth and user is not logged in
-        UserSrv.getIsIn().error(function(){
+       /*
+        *
+        *
+       UserSrv.getIsIn().error(function(){
             if (!routeClean($location.url())) {
                 // redirect back to login
                 $location.path('/login');
-            }
-        })
+            } 
+        }) 
+         */
     });
 });
 
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, FacebookProvider) {
+    FacebookProvider.init('669039869884239')
     $routeProvider
         .when('/', {
             templateUrl: 'static/app/pages/home.html',
