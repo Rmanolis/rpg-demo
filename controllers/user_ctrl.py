@@ -1,9 +1,9 @@
-from models.user import User
 from flask import *
 from library.auth_decorators import authenticate
 from library.authentication import login, register
 from library.common import get_user
 import settings
+from models.user import User
 
 logger = settings.logging.getLogger(__name__)
 

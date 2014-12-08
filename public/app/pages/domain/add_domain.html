@@ -1,0 +1,20 @@
+<div class="row">
+<div class="col-sm-3"><input ng-model="name" type="text" /></div>
+<div class="col-sm-3"><button ng-click="add_domain(name)">Add</button></div>
+</div>
+
+
+<div class="row">
+  <h1>Domains</h1>
+  <ul>
+    <li ng-repeat="domain in domains">
+      <span> {{domain.name}} </span>
+      <div ng-if="domain.user === user">
+        <button ng-click="deleteDomain(domain)"> delete </button>
+      </div>
+      <div ng-if="domain.user !== user">
+        <button ng-click="goInDomain()"> go </button>
+      </div>
+    </li>
+  </ul>
+</div>
