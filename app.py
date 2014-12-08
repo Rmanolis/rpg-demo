@@ -49,7 +49,8 @@ def index():
 @app.route('/app' , methods=['POST'])
 def post_app():
     #print('form')
-    print(facebook_tools.parse_signed_request(request.form.get('signed_request')))
+    print(facebook_tools.parse_signed_request(request.form.get('signed_request'),
+                                              FACEBOOK_APP_SECRET))
 
     return send_file('public/index.html')
 
