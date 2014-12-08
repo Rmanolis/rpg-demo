@@ -46,11 +46,10 @@ def index():
 
 @app.route('/app' , methods=['POST'])
 def post_app():
-    print('form')
-    print(request.form)
-    print('json')
-    print(request.json)
-    return "lalalla"
+    #print('form')
+    #print(request.form)
+
+    return send_file('public/index.html')
 
 @app.route('/login')
 def login():
