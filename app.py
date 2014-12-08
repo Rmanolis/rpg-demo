@@ -66,7 +66,9 @@ def facebook_authorized():
     return 'Logged in as id=%s name=%s redirect=%s' % \
         (me.data['id'], me.data['name'], request.args.get('next'))
 
-
+@facebook.tokengetter
+def get_facebook_oauth_token():
+    return session.get('oauth_token')
 
 
 @app.route('/sitemap',methods=['GET'])
