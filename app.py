@@ -9,6 +9,7 @@ from controllers.user_ctrl import user_bp
 from controllers.domain_ctrl import domain_bp
 import threading
 from datetime import datetime
+from library import facebook
 
 app = Flask(__name__)
 app._static_folder = 'public'
@@ -17,8 +18,19 @@ app.register_blueprint(scroll_bp, url_prefix='/scrolls')
 app.register_blueprint(inventory_bp, url_prefix="/inventories")
 app.register_blueprint(domain_bp, url_prefix="/domains")
 
-app.config['DEBUG'] = True
+app.config.update({
+    'DEBUG': True,
+    'CANVAS_CLIENT_ID': '669039869884239',
+    'CANVAS_CLIENT_SECRET': '7e9fe10ceb4a408e7137334ea7434da5',
+    'CANVAS_REDIRECT_URI': 'http://apps.facebook.com/remodmaomo/',
+    'CANVAS_SCOPE': 'email',
+    'CANVAS_ERROR_URI': '/error'
+})
+
+facebook.install(app)
+
 app.secret_key = 'secret!'
+
 
 
 @app.route("/")
@@ -27,6 +39,11 @@ def index():
 
 
 
+
+@app.canvas_route('/user',
+                  methods=['POST'])
+def fb_user(canvas_user):
+    return canvas_user.request('/me')
 
 @app.route('/sitemap',methods=['GET'])
 def get_sitemap():
