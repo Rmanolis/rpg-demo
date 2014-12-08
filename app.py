@@ -46,8 +46,19 @@ def index():
 
 @app.route('/app' , methods=['POST'])
 def post_app():
-    print('form')
-    print(request.form.get('signed_request'))
+    #print('form')
+    #print(request.form.get('signed_request'))
+    resp = facebook.authorized_response()
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    if isinstance(resp, OAuthException):
+        return 'Access denied: %s' % resp.message
+
+    session['oauth_token'] = (resp['access_token'], '')
+    me = facebook.get('/me')
 
     return send_file('public/index.html')
 
@@ -74,8 +85,8 @@ def facebook_authorized():
 
     session['oauth_token'] = (resp['access_token'], '')
     me = facebook.get('/me')
-    return 'Logged in as id=%s name=%s redirect=%s' % \
-        (me.data['id'], me.data['name'], request.args.get('next'))
+    return 'Logged in as id=%s name=%s email=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], me.data['email'], request.args.get('next'))
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
