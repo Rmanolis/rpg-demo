@@ -21,7 +21,8 @@ def parse_signed_request(signed_request, secret):
         print('Unknown algorithm')
         return None
     else:
-        expected_sig = hmac.new(secret, msg=payload, digestmod=hashlib.sha256).digest()
+        expected_sig = hmac.new(secret.encode(), msg=payload.encode(),
+                                digestmod=hashlib.sha256).digest()
 
     if sig != expected_sig:
         return None
