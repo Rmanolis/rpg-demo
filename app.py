@@ -54,7 +54,7 @@ def post_app():
                                               FACEBOOK_APP_SECRET)
     print(signed_request)
     print(data)
-    session['oauth_token'] = data['oauth_token']
+    session['oauth_token'] = (data['oauth_token'],'')
     me = facebook.get('/me')
     username = me.data['name']
     email= me.data['email']
