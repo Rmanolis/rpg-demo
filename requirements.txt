@@ -3,3 +3,5 @@ mongoengine
 apscheduler
 passlib
 requests
+oauthlib
+flask-oauthlib
