@@ -39,11 +39,6 @@ facebook = oauth.remote_app(
 
 
 
-''''
-@app.route("/")
-def index():
-    return send_file('public/index.html')
-''''
 
 @app.route('/')
 def login():
