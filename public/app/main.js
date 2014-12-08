@@ -26,16 +26,14 @@ app.run(function($rootScope,$location,UserSrv){
     };
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
-       /*
-        *
-        *
+     
        UserSrv.getIsIn().error(function(){
             if (!routeClean($location.url())) {
                 // redirect back to login
                 $location.path('/login');
             } 
         }) 
-         */
+         
     });
 });
 

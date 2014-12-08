@@ -60,8 +60,7 @@ def post_app():
     me = facebook.get('/me')
     username = me.data['name']
     email= me.data['email']
-    user = User.objects(email=email,
-                        username=username).first()
+    user = User.objects(email=email).first()
     if user:
         session['user_id'] = str(user.id)
     else:
