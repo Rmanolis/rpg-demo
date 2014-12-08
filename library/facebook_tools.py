@@ -1,15 +1,15 @@
 import base64
-import json
-import hmac
 import hashlib
+import hmac
+import simplejson as json
+
 def base64_url_decode(inp):
-    inp = inp.replace('-','+').replace('_','/')
     padding_factor = (4 - len(inp) % 4) % 4
     inp += "="*padding_factor
-    return base64.decodestring(inp)
+    return base64.b64decode(unicode(inp).translate(dict(zip(map(ord, u'-_'), u'+/'))))
 
+def parse_signed_request(signed_request, secret):
 
-def parse_signed_request(signed_request, fb_secret):
     l = signed_request.split('.', 2)
     encoded_sig = l[0]
     payload = l[1]
@@ -21,7 +21,7 @@ def parse_signed_request(signed_request, fb_secret):
         print('Unknown algorithm')
         return None
     else:
-        expected_sig = hmac.new(fb_secret, msg=payload, digestmod=hashlib.sha256).digest()
+        expected_sig = hmac.new(secret, msg=payload, digestmod=hashlib.sha256).digest()
 
     if sig != expected_sig:
         return None
