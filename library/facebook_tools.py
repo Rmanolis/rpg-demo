@@ -1,7 +1,8 @@
 import base64
 import hashlib
 import hmac
-from simplejson import json
+import simplejson as json
+
 
 def base64_url_decode(inp):
     padding_factor = (4 - len(inp) % 4) % 4
