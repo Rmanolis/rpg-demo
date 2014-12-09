@@ -25,7 +25,6 @@ inventory_bp = Blueprint('inventory', __name__)
 
 @inventory_bp.route('/', methods=['GET','POST'])
 @authenticate
-@jsonp
 def get_post_inventory(user):
     if request.method == 'GET':
         return Inventory.objects(owner=user.id).to_json()
