@@ -2,8 +2,7 @@ from models.inventory import Inventory
 from models.scroll import Scroll
 from models.scroll_in_inventory import ScrollInInventory
 from library.logic import for_inventory
-from library.auth_decorators import authenticate, jsonp
-
+from library.auth_decorators import authenticate
 from flask import *
 import settings
 import json
@@ -25,7 +24,6 @@ inventory_bp = Blueprint('inventory', __name__)
 
 @inventory_bp.route('/', methods=['GET','POST'])
 @authenticate
-@jsonp
 def get_post_inventory(user):
     if request.method == 'GET':
         return Inventory.objects(owner=user.id).to_json()
@@ -38,7 +36,6 @@ def get_post_inventory(user):
 
 @inventory_bp.route('/<inventory_id>', methods=['DELETE'])
 @authenticate
-@jsonp
 def delete_inventory(user, inventory_id):
     res = for_inventory.delete_inventory(user, inventory_id)
     return jsonify(res)
@@ -46,7 +43,6 @@ def delete_inventory(user, inventory_id):
 
 @inventory_bp.route('/<inventory_id>/scrolls', methods=['GET'])
 @authenticate
-@jsonp
 def get_scrolls_from_inventory(user,inventory_id):
     inv = Inventory.objects(id=inventory_id,
                             owner=user).first()
@@ -69,7 +65,6 @@ def get_scrolls_from_inventory(user,inventory_id):
 @inventory_bp.route('/<from_inv_id>/scrolls/'+\
                     '<scroll_id>/inventories/<to_inv_id>', methods=['PUT'])
 @authenticate
-@jsonp
 def put_scroll_to_another_inventory(user,from_inv_id,
                                     scroll_id,to_inv_id):
     from_inv = Inventory.objects(owner=user.id,

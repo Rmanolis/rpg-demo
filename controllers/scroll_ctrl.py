@@ -1,6 +1,6 @@
 from models.scroll import Scroll
 from flask import *
-from library.auth_decorators import authenticate, jsonp
+from library.auth_decorators import authenticate
 from library.logic import for_scroll
 import settings
 import json
@@ -19,7 +19,6 @@ scroll_bp = Blueprint('scroll', __name__)
 
 @scroll_bp.route('/', methods=['POST'])
 @authenticate
-@jsonp
 def post_scroll(user):
     name = request.json.get('name')
     description = request.json.get('description')
@@ -28,7 +27,6 @@ def post_scroll(user):
 
 @scroll_bp.route('/<scroll_id>', methods=['GET'])
 @authenticate
-@jsonp
 def get_scroll(user, scroll_id):
     scroll = Scroll.objects(user=user,
                    id=scroll_id).first()
@@ -40,7 +38,6 @@ def get_scroll(user, scroll_id):
 
 @scroll_bp.route('/unfinished', methods=['GET'])
 @authenticate
-@jsonp
 def get_unfinished_scrolls(user):
     scrolls = []
     sc_ls = Scroll.objects(owner=user, is_finished=False)

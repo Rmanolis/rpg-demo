@@ -100,7 +100,19 @@ def facebook_authorized():
     me = facebook.get('/me')
     username = me.data['name']
     email= me.data['email']
-    return email
+    user = User.objects(email=email).first()
+    if user:
+        session['user_id'] = str(user.id)
+    else:
+        user = User()
+        user.email = email
+        user.username = username
+        user.save()
+        Inventory(owner=user.to_dbref(),
+                      name='Basic',
+                      is_basic=True).save()
+
+    return redirect('/')
 
 @facebook.tokengetter
 def get_facebook_oauth_token():

@@ -1,16 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var fs = require('fs');
+/*var fs = require('fs');
 var https = require('https');
 var server_options = {
   key : fs.readFileSync('/etc/nginx/ssl/nginx.key'),
   cert : fs.readFileSync('/etc/nginx/ssl/nginx.crt')
 }
+var server = https.createServer(server_options, app).listen(8001)
+*/
 
 var app = express();
-var server = https.createServer(server_options, app).listen(8001)
-var io = require('socket.io').listen(server);
+var io = require('socket.io').listen(app.listen(8001));
 
 
 io.set('browser client minification',true);

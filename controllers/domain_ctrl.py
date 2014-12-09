@@ -1,7 +1,7 @@
 from flask import *
 from models.domain import Domain
 from models.file_in_domain import FileInDomain
-from library.auth_decorators import authenticate,jsonp
+from library.auth_decorators import authenticate
 from library.logic import for_domain
 import settings
 logger = settings.logging.getLogger(__name__)
@@ -10,7 +10,6 @@ domain_bp = Blueprint('domain', __name__)
 
 @domain_bp.route('/', methods=['GET','POST'])
 @authenticate
-@jsonp
 def post_domain(user):
     if request.method == 'GET':
         domains = Domain.objects.to_json()
@@ -25,7 +24,6 @@ def post_domain(user):
 @domain_bp.route('/<domain_id>/files',
                  methods=['POST'])
 @authenticate
-@jsonp
 def post_file_domain(user, domain_id):
      if request.method == 'POST':
         file = request.files['file']
@@ -50,7 +48,6 @@ def post_file_domain(user, domain_id):
 @domain_bp.route('/<domain_id>/files/<file_id>',
                  methods=['PUT'])
 @authenticate
-@jsonp
 def put_file_domain(user, domain_id, file_id):
     name = request.json.get('name')
     domain = Domain.objects(id=domain_id).first()
@@ -72,7 +69,6 @@ def put_file_domain(user, domain_id, file_id):
 
 @domain_bp.route('/<domain_id>', methods="PUT")
 @authenticate
-@jsonp
 def put_domain_field(user, domain_id):
     domain_dict = request.json.get('domain')
     domain = Domain.objects(id=domain_id).first()

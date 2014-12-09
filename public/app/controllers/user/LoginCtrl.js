@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $location, $rootScope, UserSrv){
+app.controller('LoginCtrl', function($scope, $http, $location, $rootScope, UserSrv){
   
   
    $scope.login = function (email,password) {
@@ -15,5 +15,10 @@ app.controller('LoginCtrl', function($scope, $location, $rootScope, UserSrv){
                 alert('Wrong email and password');
             });
     };
+
+   $scope.loginFromFacebook = function(){
+     $http.get('/login');
+     
+   }
 
 });
