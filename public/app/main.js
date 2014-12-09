@@ -14,10 +14,7 @@ var app = angular.module('app', ['ngRoute',
 
 
 app.run(function($rootScope,$location, $window,UserSrv){
-     if ($location.protocol() != 'https'){
-        $window.location.href = $location.absUrl().replace('http', 'https');
-    }
-
+    
     // enumerate routes that don't need authentication
     var routesThatDontRequireAuth = ['/login', '/register'];
 
