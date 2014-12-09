@@ -40,6 +40,9 @@ app.run(function($rootScope,$location,UserSrv){
 
 app.config(function ($routeProvider, FacebookProvider) {
     FacebookProvider.init('669039869884239')
+    if ($location.protocol() != 'https'){
+        $window.location.href = $location.absUrl().replace('http', 'https');
+    }
     $routeProvider
         .when('/', {
             templateUrl: 'static/app/pages/home.html',
