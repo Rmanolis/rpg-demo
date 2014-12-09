@@ -2,7 +2,7 @@ app.factory('InventorySrv', function($http){
   var obj = {};
 
   obj.getInventories = function(){
-    return $http.jsonp('https://178.62.126.138/inventories?callback=JSON_CALLBACK');
+    return $http.jsonp('https://178.62.126.138/inventories');
   }
 
   obj.postInventory = function(name){
