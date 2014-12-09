@@ -5,6 +5,12 @@
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     
     <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript">
+    if (window.location.protocol == "http:") {
+        var restOfUrl = window.location.href.substr(5);
+        window.location = "https:" + restOfUrl;
+    }
+</script>
 </head>
 <body ng-app="app">
 <div id="main">
