@@ -10,7 +10,7 @@ var server_options = {
 
 var app = express();
 var server = https.createServer(server_options, app).listen(8001)
-var io = require('socket.io').listen(app);
+var io = require('socket.io').listen(server);
 
 
 io.set('browser client minification',true);
