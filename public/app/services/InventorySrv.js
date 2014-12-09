@@ -2,7 +2,7 @@ app.factory('InventorySrv', function($http){
   var obj = {};
 
   obj.getInventories = function(){
-    return $http.jsonp('https://178.62.126.138/inventories');
+    return $http.get('https://178.62.126.138/inventories');
   }
 
   obj.postInventory = function(name){
@@ -14,7 +14,7 @@ app.factory('InventorySrv', function($http){
   }
 
   obj.getScrollsFromInventory = function(inventory_id){
-    return $http.jsonp('https://178.62.126.138/inventories/'+inventory_id +'/scrolls');
+    return $http.get('https://178.62.126.138/inventories/'+inventory_id +'/scrolls');
   }
 
   obj.putScrollToAnotherInventory= function(
