@@ -1,5 +1,5 @@
 from flask import *
-from library.auth_decorators import authenticate
+from library.auth_decorators import authenticate, jsonp
 from library.authentication import login, register
 from library.common import get_user
 import settings
@@ -10,6 +10,7 @@ logger = settings.logging.getLogger(__name__)
 user_bp = Blueprint('user', __name__)
 
 @user_bp.route('/login', methods=['POST'])
+@jsonp
 def post_login():
     try:
         user = request.json
@@ -36,11 +37,13 @@ def get_is_in():
 
 @user_bp.route('/current', methods=['GET'])
 @authenticate
+@jsonp
 def get_current(user):
     return jsonify({'username':user.username,
                     'id': str(user.id)})
 
 @user_bp.route('/register', methods=['POST'])
+@jsonp
 def post_register():
     email = request.json.get('email')
     username = request.json.get('username')
