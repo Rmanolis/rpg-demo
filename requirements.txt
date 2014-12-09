@@ -6,3 +6,4 @@ requests
 oauthlib
 flask-oauthlib
 flass-sslify
+simplejson

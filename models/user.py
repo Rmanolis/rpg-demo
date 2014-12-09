@@ -58,7 +58,6 @@ class User(Document):
         if errors:
             return {'errors': errors}
         else:
-            print('lalal')
             u = self.save()
             return {'id': str(u.id)}
 
