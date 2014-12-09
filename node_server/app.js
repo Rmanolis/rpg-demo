@@ -1,10 +1,11 @@
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var https = require('https')
+var fs = require('fs');
+var https = require('https');
 var server_options = {
-  key : fs.readFileSync('/etc/nginx/ssl/nginx.key').toString(),
-  cert : fs.readFileSync('/etc/nginx/ssl/nginx.crt').toString()
+  key : fs.readFileSync('/etc/nginx/ssl/nginx.key'),
+  cert : fs.readFileSync('/etc/nginx/ssl/nginx.crt')
 }
 
 var app = express();
