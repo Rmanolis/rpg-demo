@@ -17,11 +17,9 @@ app.controller('LoginCtrl', function($scope,$window, $http, $location, $rootScop
     };
 
    $scope.loginFromFacebook = function(){
-     $http.get('/login').success(function(url){
-        alert(url);
-        $window.location.href = url;
+        $window.location.href = 'http://178.62.126.138/login';
         $window.location.reload()
-     });
+     
      
    }
 
