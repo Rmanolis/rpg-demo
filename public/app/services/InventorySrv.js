@@ -14,7 +14,7 @@ app.factory('InventorySrv', function($http){
   }
 
   obj.getScrollsFromInventory = function(inventory_id){
-    return $http.jsonp('https://178.62.126.138/inventories/'+inventory_id +'/scrolls?callback=JSON_CALLBACK');
+    return $http.jsonp('https://178.62.126.138/inventories/'+inventory_id +'/scrolls');
   }
 
   obj.putScrollToAnotherInventory= function(
