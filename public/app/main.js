@@ -38,7 +38,7 @@ app.run(function($rootScope,$location,UserSrv){
 });
 
 
-app.config(function ($routeProvider, FacebookProvider) {
+app.config(function ($location,$window,$routeProvider, FacebookProvider) {
     FacebookProvider.init('669039869884239')
     if ($location.protocol() != 'https'){
         $window.location.href = $location.absUrl().replace('http', 'https');
