@@ -13,7 +13,11 @@ var app = angular.module('app', ['ngRoute',
 ]);
 
 
-app.run(function($rootScope,$location,UserSrv){
+app.run(function($rootScope,$location, $window,UserSrv){
+     if ($location.protocol() != 'https'){
+        $window.location.href = $location.absUrl().replace('http', 'https');
+    }
+
     // enumerate routes that don't need authentication
     var routesThatDontRequireAuth = ['/login', '/register'];
 
@@ -38,12 +42,9 @@ app.run(function($rootScope,$location,UserSrv){
 });
 
 
-app.config(function ($location,$window,$routeProvider, FacebookProvider) {
+app.config(function ($routeProvider, FacebookProvider) {
     FacebookProvider.init('669039869884239')
-    if ($location.protocol() != 'https'){
-        $window.location.href = $location.absUrl().replace('http', 'https');
-    }
-    $routeProvider
+       $routeProvider
         .when('/', {
             templateUrl: 'static/app/pages/home.html',
             controller: 'HomeCtrl'
