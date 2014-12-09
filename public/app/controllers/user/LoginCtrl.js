@@ -18,7 +18,6 @@ app.controller('LoginCtrl', function($scope,$window, $http, $location, $rootScop
 
    $scope.loginFromFacebook = function(){
         $window.location.href = 'http://178.62.126.138/login';
-        $window.location.reload()
      
      
    }
