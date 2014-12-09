@@ -28,7 +28,13 @@ app.run(function($rootScope,$location, $window,UserSrv){
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
      
-       UserSrv.getIsIn().error(function(){
+       UserSrv.getIsIn().success(function(){
+          if (routeClean($location.url())) {
+                // redirect back to login
+                $location.path('/');
+            }
+       
+       }).error(function(){
             if (!routeClean($location.url())) {
                 // redirect back to login
                 $location.path('/login');

@@ -2,6 +2,7 @@ from library.common import get_user
 
 def sitemap():
     if get_user():
+
        return [{'url':'#/scrolls',
           'title':'Scrolls'},
          {'url':'#/inventories',

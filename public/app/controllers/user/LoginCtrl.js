@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $http, $location, $rootScope, UserSrv){
+app.controller('LoginCtrl', function($scope,$window, $http, $location, $rootScope, UserSrv){
   
   
    $scope.login = function (email,password) {
@@ -17,7 +17,11 @@ app.controller('LoginCtrl', function($scope, $http, $location, $rootScope, UserS
     };
 
    $scope.loginFromFacebook = function(){
-     $http.get('/login');
+     $http.get('/login').success(function(url){
+        alert(url);
+        $window.location.href = url;
+        $window.location.reload()
+     });
      
    }
 
