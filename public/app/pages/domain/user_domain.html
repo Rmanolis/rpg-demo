@@ -1,0 +1,22 @@
+<div class="row">
+<h1> Domain {{domain.name}} </h1>
+</div>
+
+<div class="row">
+  <section>
+    <div class="col-sm-6">
+      <h2>Show Image</h2>
+      <img ng-src="{{choosen_image}}"></img>      
+    </div>
+
+    <div class="col-sm-2">
+      <h2>Users</h2>
+      <ul>
+        <li ng-repeat="user in users_joined">
+          {{user.username}}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>

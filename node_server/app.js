@@ -45,6 +45,15 @@ app.post('/scrolls/ready', function (req, res) {
    res.end();
 });
 
+app.post('/send/file', function(req, res){
+  io.emit('send-file', {domain_id: req.body.domain_id,
+                         file_id: req.body.file_id,
+                         type_of_file: req.body.type_of_file});
+  res.status(202);
+  res.end();
+
+});
+
 app.get('/', function (req, res) {
     res.status(202);
    res.end();

@@ -7,6 +7,8 @@ def sitemap():
           'title':'Scrolls'},
          {'url':'#/inventories',
           'title':'Inventories'},
+         {'url':'#/domains',
+          'title':'Domains'},
          {'url':'users/logout',
           'title': 'Logout'}]
     else:

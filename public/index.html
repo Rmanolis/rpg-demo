@@ -23,9 +23,10 @@
         <div ng-view></div>
     </div>
 </div>
-<script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+<script src="http://cdn.socket.io/socket.io-1.0.6.js"></script>
 <script>
-  var socket = io.connect('http://178.62.126.138:8000/');
+  var socket_url = 'http://localhost:8001/';
+  var socket = io.connect(socket_url);
 </script>
 <script src="/static/bower_components/jquery/dist/jquery.min.js"></script> 
 <script src="/static/bower_components/jquery-ui/jquery-ui.min.js"></script> 
@@ -34,6 +35,7 @@
 <script src="/static/bower_components/flow.js/dist/flow.min.js"></script>
 
 <script src="/static/bower_components/angular/angular.min.js"></script>
+<script src="/static/bower_components/ng-file-upload/angular-file-upload-all.min.js"></script>
 <script src="/static/bower_components/angular-route/angular-route.min.js"></script>
 <script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="/static/bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
@@ -51,6 +53,8 @@
 <script src="/static/app/services/UserSrv.js"></script>
 <script src="/static/app/services/ScrollSrv.js"></script>
 <script src="/static/app/services/InventorySrv.js"></script>
+<script src="/static/app/services/DomainSrv.js"></script>
+<script src="/static/app/services/CommunicationSrv.js"></script>
 
 <!-- Controllers -->
 <script src="/static/app/controllers/HomeCtrl.js"></script>
@@ -59,6 +63,11 @@
 <script src="/static/app/controllers/user/RegisterCtrl.js"></script>
 <script src="/static/app/controllers/scroll/ScrollsCtrl.js"></script>
 <script src="/static/app/controllers/inventory/InventoriesCtrl.js"></script>
+
+<script src="/static/app/controllers/domain/AddDomainCtrl.js"></script>
+<script src="/static/app/controllers/domain/ListDomainsCtrl.js"></script>
+<script src="/static/app/controllers/domain/NavigatorDomainCtrl.js"></script>
+<script src="/static/app/controllers/domain/UserDomainCtrl.js"></script>
 
 
 

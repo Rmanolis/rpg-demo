@@ -1,0 +1,15 @@
+<div class="row">
+  <h1>Domains</h1>
+  <ul>
+    <li ng-repeat="domain in domains">
+      <span> {{domain.name}} </span>
+      <div ng-if="domain.user.$oid === user.id">
+        <button ng-click="navigateDomain(domain)">Navigate </button>
+               
+      </div>
+      <div ng-if="domain.user.$oid !== user.id">
+        <button ng-click="joinDomain(domain)"> Join </button>
+      </div>
+    </li>
+  </ul>
+</div>

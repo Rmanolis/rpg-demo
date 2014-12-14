@@ -1,0 +1,14 @@
+x get domain users
+- create UI list of domains 
+- if user is not the creator of domain , will join
+- if is the owner of the domain, he will see the navigator button
+  - On the Navigator UI will 
+      - add files based on the category
+      - see the users that joined
+      - see the files based on the category
+      - choose the files 
+          If it is image it will have "Show" button
+          If it is sound it will have "Play" button
+
+
+

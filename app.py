@@ -2,6 +2,7 @@ from flask import *
 from library.logic import for_nav
 from library.logic import for_scroll
 from library import facebook_tools
+from flask.ext.mongoengine import MongoEngine
 
 import settings
 import os
@@ -10,18 +11,23 @@ from controllers.scroll_ctrl import scroll_bp
 from controllers.user_ctrl import user_bp
 from controllers.domain_ctrl import domain_bp
 import threading
+import json
 from datetime import datetime
 from flask_oauthlib.client import OAuth, OAuthException
 from flask_sslify import SSLify
 from models.user import User
 from models.inventory import Inventory
-
-FACEBOOK_APP_ID = '669039869884239'
-FACEBOOK_APP_SECRET = '7e9fe10ceb4a408e7137334ea7434da5'
+from library import model_enums
+FACEBOOK_APP_ID = 'd'
+FACEBOOK_APP_SECRET = 'd'
 
 app = Flask(__name__)
+app.config['MONGODB_SETTINGS']={
+    'db':'aetherguilds'
+}
 app.secret_key = 'secret!'
 app.config['DEBUG'] = True
+db = MongoEngine(app)
 
 app._static_folder = 'public'
 app.register_blueprint(user_bp, url_prefix='/users')
@@ -47,6 +53,14 @@ facebook = oauth.remote_app(
 @app.route('/')
 def index():
     return send_file('public/index.html')
+
+
+@app.route('/type_of_files')
+def get_type_of_files():
+    return json.dumps([model_enums.CHARACTER,
+            model_enums.MUSIC,
+            model_enums.PLACE,
+            model_enums.SOUND])
 
 @app.route('/app' , methods=['POST'])
 def post_app():

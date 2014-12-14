@@ -1,7 +1,5 @@
 import logging
-import mongoengine
-
-mongoengine.connect("aetherguilds")
+from library import model_enums
 
 logging.basicConfig(level=logging.DEBUG)
                   # format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -20,3 +18,7 @@ SOUND_FOLDER = 'save/sounds/'
 
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg', 'gif','mp3', 'wav', 'ogg'])
 
+EXTENSIONS_BY_ENUM = { 'character':['png', 'jpg', 'jpeg', 'gif'],
+                      'place': ['png', 'jpg', 'jpeg', 'gif'],
+                      'sound': ['mp3', 'wav', 'ogg'],
+                      'music': ['mp3', 'wav', 'ogg']}

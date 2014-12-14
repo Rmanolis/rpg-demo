@@ -9,7 +9,8 @@ var app = angular.module('app', ['ngRoute',
     'ngAnimate','ngDragDrop',
     'timer',
     'ui.bootstrap',
-    'facebook'
+    'facebook',
+    'angularFileUpload'
 ]);
 
 
@@ -72,6 +73,27 @@ app.config(function ($routeProvider, FacebookProvider) {
           templateUrl: 'static/app/pages/inventory/inventories.html',
           controller: 'InventoriesCtrl'
          })
+
+
+        .when('/domains',{
+          templateUrl: 'static/app/pages/domain/domains.html',
+          controller: 'ListDomainsCtrl'
+        })
+
+        .when('/domains/add',{
+          templateUrl: 'static/app/pages/domain/add_domain.html',
+          controller: 'AddDomainCtrl'
+        })
+
+        .when('/domains/:domain_id/navigate',{
+          templateUrl: 'static/app/pages/domain/navigator_domain.html',
+          controller: 'NavigatorDomainCtrl'
+        })
+
+        .when('/domains/:domain_id/join',{
+          templateUrl: 'static/app/pages/domain/user_domain.html',
+          controller:'UserDomainCtrl'
+        })
         
 });
 
